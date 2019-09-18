@@ -1,0 +1,72 @@
+using System;
+//17
+namespace ConsoleApp6
+    {
+        class Program
+        {
+            public int sum;
+            static void Main(string[] args)
+            {
+                var sum = 11;
+                for (var i = 1; i <= 999; i++)
+                {
+                    if (i >= 100)
+                    {
+                        sum += CountHundreds(i);
+                        if (i % 100 != 0)
+                        {
+                            sum += 3;
+                            sum += CountInside(i % 100);
+                        }
+                    }
+                    else
+                        sum += CountInside(i);
+                }
+
+                Console.WriteLine(sum);
+                Console.ReadKey();
+            }
+            private static int CountHundreds(int i)
+            {
+                if (i / 100 == 1 || i / 100 == 2 || i / 100 == 6) return 10;
+                if (i / 100 == 5 || i / 100 == 4 || i / 100 == 9) return 11;
+                if (i / 100 == 7 || i / 100 == 3 || i / 100 == 8) return 12;
+                return 0;
+            }
+            private static int CountDecades(int i)
+            {
+                if (i / 10 == 2 || i / 10 == 3 || i / 10 == 8 || i / 10 == 9) return 6;
+                if (i / 10 == 5 || i / 10 == 4 || i / 10 == 6) return 5;
+                if (i / 10 == 7) return 7;
+                return 0;
+            }
+            private static int CountUnits(int i)
+            {
+
+                if (i == 1 || i == 2 || i == 6) return 3;
+                if (i == 5 || i == 4 || i == 9) return 4;
+                if (i == 7 || i == 3 || i == 8) return 5;
+                return 0;
+            }
+            private static int CountUnitsLessThanTwenty(int i)
+            {
+                if (i % 100 == 10) return 3;
+                if (i % 100 == 11 || i % 100 == 12) return 6;
+                if (i % 100 == 13 || i % 100 == 14 || i % 100 == 19 || i % 100 == 18) return 8;
+                if (i % 100 == 15 || i % 100 == 16) return 7;
+                if (i % 100 == 17) return 9;
+                if (i % 100 == 1 || i % 100 == 2 || i % 100 == 6) return 3;
+                if (i % 100 == 5 || i % 100 == 4 || i % 100 == 9) return 4;
+                if (i % 100 == 7 || i % 100 == 3 || i % 100 == 8) return 5;
+                return 0;
+            }
+            private static int CountInside(int number)
+            {
+                if (number < 20)
+                    return CountUnitsLessThanTwenty(number);
+                if (number >= 20)
+                    return CountDecades(number) + CountUnits(number % 10);
+                return 0;
+            }
+        }
+    }
