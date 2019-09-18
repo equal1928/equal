@@ -1,0 +1,31 @@
+using System;
+
+namespace ConsoleApp8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //33
+            var den = 1;
+            var nom = 1;
+            for (var i = 1; i < 10; i++)
+            {
+                for (var d = 1; d < i; d++)
+                {
+                    for (var n = 1; n < d; n++)
+                    {
+                        if ((n * 10 + i) * d == n * (i * 10 + d))
+                        {
+                            den *= d;
+                            nom *= n;
+                        }
+
+                    }
+                }
+            }
+            Console.WriteLine(den /= nom);
+            Console.ReadKey();
+        }
+    }
+}
